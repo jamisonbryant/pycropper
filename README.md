@@ -45,18 +45,18 @@ I didn't need to support any other image types, so I didn't implement them. If y
 me and I'll see what I can do.
 
 ### Does PyCropper alter the original image?
-Technically, yes (in memory), but for all intents and purposes, no. Once the original image has been cropped, a *new* 
-image is saved into the output directory.
+No. The original image is stored into memory, and *that* image is cropped and saved into the output directory.
 
 ### PyCropper is cropping too much/too little of my image!
 There's a constant in the script called `TOLERANCE`. Basically, it defines how different a pixel has to be from the 
-background color in order to be considered a target pixel. Change its value up or down to decrease/increase the amount 
-cropped, respectively.
+background color in order to be considered a target pixel. Increase or decrease its value to increase or decrease the 
+size of the cropped area, respectively.
 
 ### How do I change the input/output directories?
 There are constants called `INPUT_DIR` and `OUTPUT_DIR` in the script. Change them to suit your needs. FYI, the output
-directory doesn't have to be present in order to run the script. If it is not there, the script will create it. If 
-you're using git and you change the input/output dirs, don't forget to update the `.gitignore` file!
+directory doesn't have to be present in order to run the script. If it is not there, the script will create it. 
+
+If you're using git and you change the input/output dirs, don't forget to update the `.gitignore` file!
 
 ## Credits
 **Jamison Bryant**, Principal Developer
