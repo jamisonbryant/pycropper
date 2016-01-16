@@ -1,9 +1,12 @@
+#!/usr/bin/python3
+
 import os
 
 from PIL import Image
 
-input_dir = 'img'
-output_dir = 'out'
+INPUT_DIR = 'img'
+OUTPUT_DIR = 'out'
+TOLERANCE = 11
 
 def process(file):
     # Print out some file information
@@ -22,15 +25,14 @@ def process(file):
         color_r, color_g, color_b = color[0], color[1], color[2]
         bg_r, bg_g, bg_b = bg_color[0], bg_color[1], bg_color[2]
         r_similar, g_similar, b_similar = False, False, False
-        tolerance = 11
 
-        if color_r in range(bg_r - tolerance, bg_r + tolerance):
+        if color_r in range(bg_r - TOLERANCE, bg_r + TOLERANCE):
             r_similar = True
             
-        if color_g in range(bg_g - tolerance, bg_g + tolerance):
+        if color_g in range(bg_g - TOLERANCE, bg_g + TOLERANCE):
             g_similar = True
             
-        if color_b in range(bg_b - tolerance, bg_b + tolerance):
+        if color_b in range(bg_b - TOLERANCE, bg_b + TOLERANCE):
             b_similar = True
 
         return r_similar and g_similar and b_similar
@@ -131,14 +133,16 @@ def process(file):
     cropped_image = image.crop((left_edge_coord, top_edge_coord, right_edge_coord, bottom_edge_coord))
 
     # Display original and cropped images
+    # !!! - THIS WILL ONLY WORK ON WINDOWS - !!!
     # image.show()
     # cropped_image.show()
     # os.system('pause')
+    # !!! - END THIS WILL ONLY WORK ON WINDOWS - !!!
 
     # Save image to output dir
     file_name, file_ext = os.path.splitext(file)
     output_file_name = os.path.basename(file_name) + '_processed' + file_ext
-    output_file_path = os.path.join(os.getcwd(), output_dir, output_file_name)
+    output_file_path = os.path.join(os.getcwd(), OUTPUT_DIR, output_file_name)
     print("Saving image to " + output_file_path)
     cropped_image.save(output_file_path)
 
